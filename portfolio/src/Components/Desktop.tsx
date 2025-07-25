@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import bg2 from "../assets/bg2.jpg";
 import gradient from "../assets/gradient-wp.jpg";
 import Clock from "./Widgets/Clock";
-import mypic from '../assets/me.jpg'
+import mypic from "../assets/me.jpg";
 import Notes from "./Widgets/Notes";
 import MusicPlayer from "./Widgets/MusicPlay";
-import projectIcon from "../assets/apps/this_computer.png"
+import projectIcon from "../assets/apps/this_computer.png";
 import contact from "../assets/apps/phone.png";
 import skills from "../assets/apps/minecraft.png";
 import resume from "../assets/apps/text_file_2.png";
-
+import Projects from "../Apps/Projects";
 
 const Desktop = () => {
+  const [showProjects, setShowProjects] = useState(false);
+
+  const handleProjectsClick = () => {
+    setShowProjects(true);
+  };
+
   return (
+    /* Home */
     <div
       className="w-full h-dvh bg-cover bg-center"
       style={{ backgroundImage: `url(${bg2})` }}
@@ -32,8 +39,15 @@ const Desktop = () => {
         <div className="flex flex-col gap-5">
           <MusicPlayer />
           <div className="mx-4 grid grid-cols-3 gap-5">
-            <button className=" flex flex-col items-center">
-              <img src={projectIcon} className="app-hover w-[48px]" alt="" />
+            <button
+              className="flex flex-col items-center"
+              onClick={handleProjectsClick}
+            >
+              <img
+                src={projectIcon}
+                className="glass-morphism rounded-xl bg-white/30 backdrop-blur-lg p-2 app-hover w-[55px]"
+                alt=""
+              />
               <div
                 style={{
                   background:
@@ -46,7 +60,11 @@ const Desktop = () => {
               </div>
             </button>
             <button className="flex flex-col items-center">
-              <img src={skills} className={"app-hover w-[48px]"} alt="" />
+              <img
+                src={skills}
+                className="glass-morphism rounded-xl bg-white/30 backdrop-blur-lg p-2 app-hover w-[55px]"
+                alt=""
+              />
               <div
                 style={{
                   background:
@@ -59,7 +77,11 @@ const Desktop = () => {
               </div>
             </button>
             <button className="flex flex-col items-center">
-              <img src={resume} className={"app-hover w-[48px]"} alt="" />
+              <img
+                src={resume}
+                className="glass-morphism rounded-xl bg-white/30 backdrop-blur-lg p-2 app-hover w-[55px]"
+                alt=""
+              />
               <div
                 style={{
                   background:
@@ -72,7 +94,11 @@ const Desktop = () => {
               </div>
             </button>
             <button className="flex flex-col items-center">
-              <img src={contact} className={"app-hover w-[48px]"} alt="" />
+              <img
+                src={contact}
+                className="glass-morphism rounded-xl bg-white/30 backdrop-blur-lg p-2 app-hover w-[55px]"
+                alt=""
+              />
               <div
                 style={{
                   background:
@@ -87,6 +113,9 @@ const Desktop = () => {
           </div>
         </div>
       </div>
+
+      {/* Conditionally render Projects modal */}
+      {showProjects && <Projects onClose={() => setShowProjects(false)} />}
     </div>
   );
 };
