@@ -36,7 +36,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClose }) => {
       type: "FULL STACK",
       duration: "3 months",
       description:
-        "A lightning-fast flashcard application designed for efficient learning. Features spaced repetition algorithms, progress tracking, and collaborative study groups. Built with React Native for cross-platform compatibility.",
+        "An efficient flashcard web application designed for efficient learning. Users can paste their notes or upload pdf files to convert to flashcards.",
       image: weflash,
       tech: [
         "React.js",
@@ -54,7 +54,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClose }) => {
       title: "DVD Eliminator",
       category: "WEB GAME",
       type: "FRONTEND",
-      duration: "2 months",
+      duration: "2 weeks",
       description:
         "An interactive web-based game that challenges players to eliminate DVD logos bouncing around the screen. Features multiple difficulty levels, power-ups, and leaderboards with smooth animations.",
       image: dvd,
@@ -66,7 +66,7 @@ const Projects: React.FC<ProjectsProps> = ({ onClose }) => {
       id: 3,
       title: "Timer Rush",
       category: "WEB GAME",
-      type: "FULL-STACK",
+      type: "FULL STACK",
       duration: "1 week",
       description:
         "An interactive web-based game that challenges players to stop the timer at the exact target time given to them. At the 5-second mark the timer will close, pushing the intuition of the player to work..",

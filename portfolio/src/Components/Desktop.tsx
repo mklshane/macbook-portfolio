@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import bg2 from "../assets/bg2.jpg";
-import gradient from "../assets/gradient-wp.jpg";
 import Clock from "./Widgets/Clock";
 import mypic from "../assets/me.jpg";
 import Notes from "./Widgets/Notes";
@@ -10,13 +9,19 @@ import contact from "../assets/apps/phone.png";
 import skills from "../assets/apps/minecraft.png";
 import resume from "../assets/apps/text_file_2.png";
 import Projects from "../Apps/Projects";
+import Resume from "../Apps/Resume";
 
 const Desktop = () => {
   const [showProjects, setShowProjects] = useState(false);
+  const [showResume, setShowResume] = useState(false);
 
   const handleProjectsClick = () => {
     setShowProjects(true);
   };
+
+  const handleResumeClick = () => {
+    setShowResume(true);
+  }
 
   return (
     /* Home */
@@ -76,7 +81,8 @@ const Desktop = () => {
                 </p>
               </div>
             </button>
-            <button className="flex flex-col items-center">
+            <button className="flex flex-col items-center"
+            onClick={handleResumeClick}>
               <img
                 src={resume}
                 className="glass-morphism rounded-xl bg-white/30 backdrop-blur-lg p-2 app-hover w-[55px]"
@@ -116,6 +122,9 @@ const Desktop = () => {
 
       {/* Conditionally render Projects modal */}
       {showProjects && <Projects onClose={() => setShowProjects(false)} />}
+      {showResume && <Resume onClose={() => setShowResume(false) } />}
+      
+
     </div>
   );
 };
