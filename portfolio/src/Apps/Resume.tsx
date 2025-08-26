@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Download, X, Minimize2, Maximize2, ExternalLink } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 
 interface ResumeProps {
   onClose: () => void;
@@ -68,30 +68,41 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
         }}
       >
         {/* Enhanced Window Controls */}
-        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={handleClose}
-              className="w-3.5 h-3.5 bg-red-500 rounded-full hover:bg-red-600 transition-all duration-200 flex items-center justify-center group shadow-sm"
-            >
-              <X className="w-2 h-2 text-red-900 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
-            <button
-              className="w-3.5 h-3.5 bg-yellow-500 rounded-full hover:bg-yellow-600 transition-all duration-200 flex items-center justify-center group shadow-sm"
-              onClick={handleMinimize}
-            >
-              <Minimize2 className="w-2 h-2 text-yellow-900 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
-            <button
-              onClick={handleMaximize}
-              className="w-3.5 h-3.5 bg-green-500 rounded-full hover:bg-green-600 transition-all duration-200 flex items-center justify-center group shadow-sm"
-            >
-              <Maximize2 className="w-2 h-2 text-green-900 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
+        <div className="flex items-center justify-between px-3 py-3 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+          {/* macOS Window Controls */}
+          <div>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={handleClose}
+                className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-150 flex items-center justify-center group"
+              >
+                <span className="text-red-800 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  ×
+                </span>
+              </button>
+              <button
+                onClick={handleMinimize}
+                className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 transition-colors duration-150 flex items-center justify-center group"
+              >
+                <span className="text-yellow-800 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  −
+                </span>
+              </button>
+              <button
+                onClick={handleMaximize}
+                className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 transition-colors duration-150 flex items-center justify-center group"
+              >
+                <span className="text-green-800 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  +
+                </span>
+              </button>
+            </div>
+            
+            <div className="w-16"></div>
           </div>
 
           <div className="flex items-center space-x-4">
-            <h1 className="text-md font-semibold text-gray-800">Resume</h1>
+            <h1 className="text-sm font-semibold text-gray-800">Resume</h1>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -119,10 +130,7 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
         >
           <div className="w-full h-full p-6">
             <div className="w-full h-full bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-              <div
-                className="w-full h-full relative"
-                
-              >
+              <div className="w-full h-full relative">
                 <iframe
                   src="/Estrellanes-Resume.pdf"
                   width="100%"
@@ -159,12 +167,7 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
               </span>
               <span>Estrellanes-Resume.pdf</span>
             </div>
-            <div className="flex items-center space-x-4">
-              <span>100% zoom</span>
-              <span className="text-xs bg-gray-200 px-2 py-1 rounded">
-                ESC to close
-              </span>
-            </div>
+           
           </div>
         </div>
       </div>

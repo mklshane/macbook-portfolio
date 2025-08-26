@@ -15,10 +15,34 @@ const playlist = [
     cover: "/albums/savage.jpg",
   },
   {
+    title: "Iris",
+    artist: "Goo Goo Dolls",
+    src: "/songs/iris.mp3",
+    cover: "/albums/iris.jpg",
+  },
+  {
     title: "Whiplash",
     artist: "aespa",
     src: "/songs/whiplash.mp3",
     cover: "/albums/whiplash.jpg",
+  },
+  {
+    title: "Maroon",
+    artist: "Taylor Swift",
+    src: "/songs/maroon.mp3",
+    cover: "/albums/midnights.jpg",
+  },
+  {
+    title: "Multo",
+    artist: "Cup of Joe",
+    src: "/songs/multo.mp3",
+    cover: "/albums/multo.jpg",
+  },
+  {
+    title: "Back to Friends",
+    artist: "sombr",
+    src: "/songs/btf.mp3",
+    cover: "/albums/btf.jpg",
   },
 ];
 

@@ -6,15 +6,26 @@ import Dock from './Components/Dock.tsx';
 
 
 function App() {
+  const [openedApps, setOpenedApps] = useState<string[]>([]);
+
+  const openApp = (appName: string) => {
+    if (!openedApps.includes(appName)) {
+      setOpenedApps([...openedApps, appName]);
+    }
+  };
+
+  const closeApp = (appName: string) => {
+    setOpenedApps(openedApps.filter((app) => app !== appName));
+  };
 
 
   return (
     <div>
 
      <Navbar />
-     <Desktop />
+     <Desktop openedApps={openedApps} closeApp={closeApp}/>
 
-    <Dock />
+    <Dock onAppClick={openApp} />
     
     </div>
     
