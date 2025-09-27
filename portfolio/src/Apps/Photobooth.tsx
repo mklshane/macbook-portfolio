@@ -38,7 +38,6 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
     };
   }, []);
 
-  // Dragging handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest("button")) return;
     if ((e.target as HTMLElement).closest(".bottom-controls")) return;
@@ -83,7 +82,6 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
 
     setIsCapturing(true);
 
-    // Shutter effect
     const shutter = document.getElementById("shutter-effect");
     if (shutter) {
       shutter.classList.add("opacity-100");
@@ -100,7 +98,6 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Flip the image horizontally to match the mirrored display
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -132,7 +129,7 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed w-[800px] h-[600px] bg-black/60 rounded-xl shadow-2xl z-50 overflow-hidden select-none"
+      className="fixed w-[550px] h-[380px] bg-black/60 rounded-xl shadow-2xl z-50 overflow-hidden select-none"
       style={{
         left: position.x,
         top: position.y,
@@ -140,25 +137,25 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
       }}
       onMouseDown={handleMouseDown}
     >
-      {/* macOS Title Bar - Dark */}
+      {/*  Title Bar  */}
       <div
-        className="flex justify-between items-center px-4 py-3 bg-black/60 cursor-move"
+        className="flex justify-between items-center px-4 py-1 bg-black/40 cursor-move"
         onMouseDown={handleMouseDown}
       >
         <div className="flex items-center space-x-2">
           <div
-            className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer shadow-sm"
+            className="w-2.5 h-2.5 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer shadow-sm"
             onClick={onClose}
           />
-          <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 shadow-sm" />
-          <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 shadow-sm" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500 hover:bg-yellow-600 shadow-sm" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500 hover:bg-green-600 shadow-sm" />
         </div>
-        <span className="text-sm font-medium text-white">Photo Booth</span>
-        <div className="w-16" /> {/* Spacer for centering */}
+        <span className="text-[13px] font-medium text-white">Photo Booth</span>
+        <div className="w-16" />
       </div>
 
       {/* Main Video Area */}
-      <div className="relative bg-black h-[calc(100%-120px)]">
+      <div className="relative bg-black h-[calc(100%-75px)]">
         <video
           ref={videoRef}
           autoPlay
@@ -183,7 +180,7 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
             />
             <button
               onClick={() => setSelectedPhoto(-1)}
-              className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors"
+              className="absolute top-3 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors"
             >
               <span className="text-white text-lg font-bold">×</span>
             </button>
@@ -191,23 +188,21 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
         )}
       </div>
 
-      {/* Bottom Controls */}
-      <div className="bottom-controls absolute bottom-0 left-0 right-0 h-[80px] bg-black/70 flex items-center justify-center px-6">
-        
-
+      {/* Bottom Controls*/}
+      <div className="bottom-controls absolute bottom-0 left-0 right-0 h-[48px] bg-black/50 flex items-center justify-center px-6">
         {/* Center - Camera Button */}
         <button
           onClick={capturePhoto}
           disabled={isCapturing}
-          className={`w-12 h-12 rounded-full border-1 border-white transition-all duration-200 ${
+          className={`w-9 h-9 rounded-full  transition-all duration-200 ${
             isCapturing
               ? "bg-gray-400 scale-95"
-              : "bg-red-500 hover:bg-red-600 active:scale-95 shadow-lg"
+              : "bg-[#bf1813] hover:bg-red-600 active:scale-95 shadow-lg"
           }`}
         >
           <div className="flex items-center justify-center">
             <svg
-              className="w-6 h-6 text-white/70"
+              className="w-5.5 h-5.5 text-white/70"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -218,18 +213,16 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
             </svg>
           </div>
         </button>
-
-      
       </div>
 
       {/* Gallery Strip (when photos exist) */}
       {capturedPhotos.length > 0 && selectedPhoto === -1 && (
-        <div className="absolute bottom-20 left-6 flex space-x-2">
-          {capturedPhotos.slice(0, 5).map((photo, index) => (
+        <div className="absolute bottom-12 flex gap-[0.5px]">
+          {capturedPhotos.slice(0, 7).map((photo, index) => (
             <button
               key={index}
               onClick={() => setSelectedPhoto(index)}
-              className="w-12 h-12 rounded-lg overflow-hidden hover:scale-105 transition-transform border-2 border-gray-600 hover:border-white"
+              className="w-20 h-12 rounded-xs overflow-hidden hover:scale-105 transition-transform border-[1.5px] border-white/80 hover:border-white"
             >
               <img
                 src={photo}
@@ -243,28 +236,29 @@ const PhotoBooth = ({ onClose }: { onClose: () => void }) => {
 
       {/* Action buttons for selected photo */}
       {selectedPhoto >= 0 && (
-        <div className="absolute bottom-6 right-6 flex items-center space-x-3">
+        <div className="absolute bottom-3.5 right-4 flex items-center space-x-2">
           <button
             onClick={() => downloadPhoto(capturedPhotos[selectedPhoto])}
-            className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors"
+            className="px-4 py-1 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs rounded-lg transition-all duration-200 border border-white/20 hover:border-white/30 font-medium hover:scale-105 active:scale-95"
           >
-            Share
+            <div className="flex items-center space-x-1.5">
+            
+              <span>Share</span>
+            </div>
           </button>
           <button
             onClick={() => deletePhoto(selectedPhoto)}
-            className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg transition-colors"
+            className="px-4 py-1 bg-white/10 hover:bg-red-500/80 backdrop-blur-md text-white text-xs rounded-lg transition-all duration-200 border border-white/20 hover:border-red-400/50 font-medium hover:scale-105 active:scale-95"
           >
-            Delete
+            <div className="flex items-center space-x-1.5">
+              
+              <span>Delete</span>
+            </div>
           </button>
         </div>
       )}
 
-      {/* Status Indicator */}
-      {isCapturing && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/70 text-white px-6 py-3 rounded-full backdrop-blur-sm">
-          <span className="text-sm font-medium">Taking photo...</span>
-        </div>
-      )}
+     
     </div>
   );
 };
